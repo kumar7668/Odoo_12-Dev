@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account.account_common_report_view" model="ir.ui.view">
+            <field name="name">Account Common Report</field>
+            <field name="model">account.common.report</field>
+            <field name="arch" type="xml">
+            <form string="Report Options">
+                <field name="company_id" invisible="1"/>
+                <group col="4">
+                    <field name="target_move" widget="radio"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <group>
+                    <field name="journal_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </group>
+                <group>
+                <field name="operating_unit_id"/>
+                </group>
+                <group>
+                <field name="branch_id"/>
+                </group>
+                <footer>
+                    <button name="check_report" string="Print" type="object" default_focus="1"
+                            class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-default" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+
