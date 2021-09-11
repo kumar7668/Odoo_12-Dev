@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="search_template_res_branch">
+        <button type="button" class="o_dropdown_toggler_btn btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+            <span class="fa fa-user"/>
+            Branch:
+            <t t-set="branch_value">All</t>
+            <t t-foreach="options['branch']" t-as="a">
+                <t t-if="a.get('selected') == True">
+                    <t t-set="branch_value" t-value="''"/>
+                    <t t-esc="a.get('name')"/>
+                </t>
+            </t>
+            <t t-esc="branch_value"/>
+        </button>
+        <div class="dropdown-menu o_filter_menu" role="menu">
+            <t t-foreach="options['branch']" t-as="a">
+                <a role="menuitem" class="dropdown-item js_account_report_choice_filter" t-att-title="a.get('name')" t-att-data-id="a.get('id')" data-filter="branch">
+                    <t t-esc="a.get('name')"/>
+                </a>
+            </t>
+        </div>
+    </template>
+
+    <template id="search_template_operating_unit">
+        <button type="button" class="o_dropdown_toggler_btn btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+            <span class="fa fa-user"/>
+            OU:
+            <t t-set="operating_unit_value">All</t>
+            <t t-foreach="options['operating_unit']" t-as="a">
+                <t t-if="a.get('selected') == True">
+                    <t t-set="operating_unit_value" t-value="''"/>
+                    <t t-esc="a.get('name')"/>
+                </t>
+            </t>
+            <t t-esc="operating_unit_value"/>
+        </button>
+        <div class="dropdown-menu o_filter_menu" role="menu">
+            <t t-foreach="options['operating_unit']" t-as="a">
+                <a role="menuitem" class="dropdown-item js_account_report_choice_filter" t-att-title="a.get('name')" t-att-data-id="a.get('id')" data-filter="operating_unit">
+                    <t t-esc="a.get('name')"/>
+                </a>
+            </t>
+        </div>
+    </template>
+
+    <template id="account_reports.search_template">
+        <div class="btn-group o_dropdown o_account_reports_filter_date" t-if="options.get('date') != None">
+            <t t-call="account_reports.search_template_date_filter"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_date_cmp" t-if="options.get('comparison') != None">
+            <t t-call="account_reports.search_template_comparison"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_journals" t-if="options.get('journals') != None">
+            <t t-call="account_reports.search_template_journals"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_account_type" t-if="options.get('account_type') != None">
+            <t t-call="account_reports.search_template_account_type"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_analytic" t-if="options.get('analytic') != None or options.get('analytic_tags') != None">
+            <t t-call="account_reports.search_template_analytic"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_ir_filters" t-if="options.get('ir_filters') != None">
+            <t t-call="account_reports.search_template_ir_filters"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_groupby_fields" t-if="options.get('groupby_fields')">
+            <t t-call="account_reports.search_template_groupby_fields"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_partner" t-if="options.get('partner')">
+            <t t-call="account_reports.search_template_partner"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_currency" t-if="options.get('currency_rates')">
+            <t t-call="account_reports.search_template_currency"/>
+        </div>
+        <div id="extra_options_dropdown" class="btn-group o_dropdown o_account_reports_filter_bool" t-if="options.get('cash_basis') != None or options.get('all_entries') != None or options.get('unfold_all') != None">
+            <t t-call="account_reports.search_template_extra_options"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_branch" t-if="options.get('branch') != None">
+            <t t-call="gts_branch_operating_accounting_reports.search_template_res_branch"/>
+        </div>
+        <div class="btn-group o_dropdown o_account_reports_filter_operating_unit" t-if="options.get('operating_unit') != None">
+            <t t-call="gts_branch_operating_accounting_reports.search_template_operating_unit"/>
+        </div>
+    </template>
+
+</odoo>

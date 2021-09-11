@@ -1,0 +1,10 @@
+<odoo>
+
+    <template id="account_reports_backend_inherit" inherit_id="web.assets_backend" active="True">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss"
+                  href="/gts_branch_operating_accounting_reports/static/src/scss/account_report_inherit.css"/>
+        </xpath>
+    </template>
+
+</odoo>

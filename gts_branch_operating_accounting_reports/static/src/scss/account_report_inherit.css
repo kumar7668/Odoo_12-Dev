@@ -1,0 +1,4 @@
+.position-static {
+    position: static !important;
+    display: inline-table;
+}
